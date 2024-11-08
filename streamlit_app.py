@@ -1,6 +1,5 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -14,6 +13,9 @@ my_dataframe = session.table("smoothies.public.fruit_options")
 # Check the available columns
 columns = my_dataframe.columns
 st.write(f"Available columns: {columns}")
+
+cnx = st.connection("snowflake")
+session = snx.session()
 
 # Correct the column name based on the available columns
 fruit_options = my_dataframe.to_pandas()['fruit'].tolist()  # Adjusted column name
